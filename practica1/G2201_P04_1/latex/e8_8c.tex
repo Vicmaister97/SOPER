@@ -1,0 +1,56 @@
+\hypertarget{e8_8c}{}\section{e8.\+c File Reference}
+\label{e8_8c}\index{e8.\+c@{e8.\+c}}
+
+
+Programa que crea tantos procesos como programas pasados por entrada y los ejecuta segun el ultimo parametro pasado por entrada.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+Include dependency graph for e8.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries C\+M\+D\+\_\+\+M\+AX}~100\hypertarget{e8_8c_aab1a0d6f90722c03ed6c8a9460d6e792}{}\label{e8_8c_aab1a0d6f90722c03ed6c8a9460d6e792}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{e8_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programa que crea tantos procesos como programas pasados por entrada y los ejecuta segun el ultimo parametro pasado por entrada. 
+
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} 
+\begin{DoxyParams}{Parameters}
+{\em argv\mbox{[}0\mbox{]}} & el nombre del programa \\
+\hline
+{\em argv\mbox{[}1\mbox{]}...\+argv\mbox{[}n-\/1\mbox{]}} & los programas a ejecutar \\
+\hline
+{\em argv\mbox{[}n\mbox{]}} & -\/l, -\/lp, -\/v, -\/vp dependiendo de como se quiera ejecutar los programas pasados por entrada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+\+: 03/03/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{e8.\+c@{e8.\+c}!main@{main}}
+\index{main@{main}!e8.\+c@{e8.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{e8_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{e8_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+$<$creamos y guardamos el path
+
+$<$no hay flag que corresponda con un exec 

@@ -1,0 +1,33 @@
+\hypertarget{e4a_8c}{}\section{e4a.\+c File Reference}
+\label{e4a_8c}\index{e4a.\+c@{e4a.\+c}}
+
+
+Programa que crea una serie de procesos mediante llamadas a fork y analiza el arbol de procesos que se generan. Imprime para cada hijo, su P\+ID y el de su padre.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+Include dependency graph for e4a.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+P\+R\+OC}~3\hypertarget{e4a_8c_acee2369f62e4a096d243dec3cd7d0b00}{}\label{e4a_8c_acee2369f62e4a096d243dec3cd7d0b00}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries main} (void)\hypertarget{e4a_8c_a840291bc02cba5474a4cb46a9b9566fe}{}\label{e4a_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programa que crea una serie de procesos mediante llamadas a fork y analiza el arbol de procesos que se generan. Imprime para cada hijo, su P\+ID y el de su padre. 
+
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} \begin{DoxyDate}{Date}
+\+: 03/03/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}

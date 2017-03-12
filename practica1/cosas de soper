@@ -1,0 +1,677 @@
+NOTAS para PRACTICAS DE SOPER*
+
+******************************
+*							 *
+*							 *
+*e1							 *
+******************************************************************************************
+int open(const char *path, int oflag, ... );											 *
+																						 *
+Upon successful completion, the function shall open the file and return a non-negative 	 *
+integer representing the lowest numbered unused file descriptor. Otherwise, -1 shall be  *
+returned and errno set to indicate the error. No files shall be created or modified if 	 *
+the function returns -1.																 *
+******************************************************************************************
+
+
+
+O_RDONLY == 0
+
+O_WRONLY == 1
+
+O_RDWR == 2
+
+O_APPEND == 1024
+
+O_TRUNC == 512
+
+O_CREAT == 64
+
+O_EXCL == 128
+
+
+Si no existe el fichero
+
+si e1.txt no existe:::
+#include <stdio.h>
+#include <fcntl.h>
+
+int main(){
+	FILE *f = NULL;
+	int num = open ("e1.txt",O_RDONLY);
+	int num2 = open ("e1.txt",O_WRONLY);
+	int num3 = open ("e1.txt",O_RDWR);
+	int num4 = open ("e1.txt",O_APPEND);
+	int num5 = open ("e1.txt",O_TRUNC);
+	//int num6 = open ("e1.txt",O_CREAT);
+	int num7 = open ("e1.txt",O_EXCL);
+	printf("\nnum == %d\n", num);
+	printf("\nnum2 == %d\n", num2);
+	printf("\nnum3 == %d\n", num3);
+	printf("\nnum4 == %d\n", num4);
+	printf("\nnum5 == %d\n", num5);
+	//printf("\nnum6 == %d\n", num6);
+	printf("\nnum7 == %d\n", num7);
+
+	
+return 0;
+}
+
+num == -1
+
+num2 == -1
+
+num3 == -1
+
+num4 == -1
+
+num5 == -1
+
+num7 == -1
+
+**********************************************************************
+si e1.txt existe
+
+num == 3
+
+num2 == 4
+
+num3 == 5
+
+num4 == 6
+
+num7 == 7
+
+Y el fichero sigue intacto
+
+int num5 = open ("e1.txt",O_TRUNC); te lo borra
+
+
+
+
+******************************************************************************************
+int close(int fildes);																	 *
+																						 *
+Upon successful completion, 0 shall be returned; otherwise, -1 shall be returned and     *
+errno set to indicate the error.														 *
+******************************************************************************************
+******************************************************************************************
+int read( int handle, void *buffer, int nbyte );										 *
+int numw = write (0, buff, 4);															 *
+	printf("\nnumw = %d\n", numw);														 *
+	free(buff);																			 *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************
+*																						 *
+*e2																						 *
+******************************************************************************************
+
+
+int main(){
+
+	pid_t pid;
+	int proc_id;
+	fork();
+	pid = getpid();
+	printf("\nPID == %d\n", pid);
+
+	return 1;
+}
+
+
+PID == 696
+
+PID == 697
+
+
+
+void  main(void)
+{
+     pid_t  pid;
+     int    i;
+     char   buf[100];
+
+     fork();
+     pid = getpid();
+     for (i = 1; i <= 10; i++) {
+          sprintf(buf, "PROCESS ID === %d, value = %d\n", pid, i);
+          write(1, buf, strlen(buf));
+
+     } 
+}
+
+
+PROCESS ID === 669, value = 1
+PROCESS ID === 669, value = 2
+PROCESS ID === 669, value = 3
+PROCESS ID === 669, value = 4
+PROCESS ID === 669, value = 5
+PROCESS ID === 669, value = 6
+PROCESS ID === 669, value = 7
+PROCESS ID === 669, value = 8
+PROCESS ID === 669, value = 9
+PROCESS ID === 669, value = 10
+PROCESS ID === 670, value = 1
+PROCESS ID === 670, value = 2
+PROCESS ID === 670, value = 3
+PROCESS ID === 670, value = 4
+PROCESS ID === 670, value = 5
+PROCESS ID === 670, value = 6
+PROCESS ID === 670, value = 7
+PROCESS ID === 670, value = 8
+PROCESS ID === 670, value = 9
+PROCESS ID === 670, value = 10
+
+int main(){
+
+	pid_t pid;
+	int proc_id;
+	fork();
+	pid = getpid();
+	printf("\nPID == %d\n", pid);
+	if(pid % 5) printf("\nYEAH BITCHES\n");
+	return 1;
+}
+
+
+PID == 704
+
+YEAH BITCHES
+
+PID == 705
+
+
+
+
+int  main(void)
+{
+     pid_t  pid0, pid, pidw, ppid;
+     int    i;
+     char   buf[100];
+	
+	 pid0 = getpid();
+	 printf("\nI am your father === PID0 === %d\n", pid0);
+     
+     if(fork() == 0) printf("\nI am The son PID === %d\n", getpid());
+     
+     pid = getpid();
+     ppid = getppid();
+     printf("\nI am your other father? === PPID === %d\n", ppid);
+
+     for (i = 1; i <= 5; i++) {
+          sprintf(buf, "\n\tPROCESS ID === %d, value = %d\n", pid, i);
+          write(1, buf, strlen(buf));
+	      
+
+     }
+
+     return 0;
+}
+
+
+
+I am your father === PID0 === 1940
+
+I am your other father? === PPID === 1747
+
+	PROCESS ID === 1940, value = 1
+
+	PROCESS ID === 1940, value = 2
+
+	PROCESS ID === 1940, value = 3
+
+	PROCESS ID === 1940, value = 4
+
+	PROCESS ID === 1940, value = 5
+
+I am The son PID === 1941
+
+I am your other father? === PPID === 1
+
+	PROCESS ID === 1941, value = 1
+
+	PROCESS ID === 1941, value = 2
+
+	PROCESS ID === 1941, value = 3
+
+	PROCESS ID === 1941, value = 4
+
+	PROCESS ID === 1941, value = 5
+
+/*Basically: 	1747 is pid of my terminal process
+				1940 is the pid of the father
+				1941 is the pid of the son
+
+
+
+
+******************************************************************************************
+******************************************************************************************
+*********************         ******  ****************************************************
+*********************  *************  ****************************************************
+*********************  *************  ****  **********************************************
+*********************  *************  ****  **********************************************
+*********************      *********  ****  **********************************************
+*********************  *************          ********************************************
+*********************  *******************  **********************************************
+*********************         ************  **********************************************
+******************************************************************************************
+******************************************************************************************
+0 errores de valgrind
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e4a
+
+
+PADRE 7154 
+HIJO  7154 con padre 7153
+PADRE 7156 
+HIJO  7156 con padre 7154
+PADRE 7158 
+HIJO  7158 con padre 7156
+e4a(7154)─┬─e4a(7156)─┬─e4a(7158)
+          │           └─sh(7159)───pstree(7162)
+          └─sh(7157)───pstree(7160)
+PADRE 7163 
+HIJO  7163 con padre 7153
+PADRE 7165 
+HIJO  7165 con padre 7163
+e4a(7156)─┬─e4a(7158)
+          └─sh(7159)───pstree(7162)
+PADRE 7169 
+HIJO  7169 con padre 7154
+e4a(7158)
+e4a(7163)─┬─e4a(7165)
+          └─sh(7167)───pstree(7168)
+PADRE 7172 
+HIJO  7172 con padre 7153
+e4a(7165)
+e4a(7169)
+e4a(7172)
+
+
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e4b
+PADRE 7310 
+HIJO  7310 con padre 7309
+PADRE 7312 
+HIJO  7312 con padre 7310
+PADRE 7316 
+HIJO  7316 con padre 7312
+e4b(7312)─┬─e4b(7316)
+          └─sh(7317)───pstree(7318)
+PADRE 7319 
+HIJO  7319 con padre 7310
+e4b(7316)
+e4b(7310)───e4b(7312)─┬─e4b(7316)
+                      └─sh(7317)
+PADRE 7322 
+HIJO  7322 con padre 7309
+PADRE 7324 
+HIJO  7324 con padre 7322
+e4b(7319)
+e4b(7322)─┬─e4b(7324)
+          └─sh(7325)───pstree(7327)
+PADRE 7328 
+HIJO  7328 con padre 7309
+e4b(7324)
+e4b(7328)
+
+
+******************************************************************************************
+******************************************************************************************
+*********************         *********        *******************************************
+*********************  ****************  *************************************************
+*********************  ****************  *************************************************
+*********************  ****************  *************************************************
+*********************      ************        *******************************************
+*********************  **********************  *******************************************
+*********************  **********************  *******************************************
+*********************         *********        *******************************************
+******************************************************************************************
+******************************************************************************************
+0 errores de Valgrind
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e5a
+PADRE 6845 
+HIJO  6846 con padre 6845
+PADRE 6846 
+HIJO  6847 con padre 6846
+PADRE 6847 
+HIJO  6848 con padre 6847
+
+This process IDS == 6848 is ending
+
+This process ID == 6847 is ending
+
+This process ID == 6846 is ending
+
+This process ID == 6845 is ending
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e5b
+
+HIJO  6854 con padre 6853
+
+This process ID == 6854 is ending
+PADRE 6853 
+HIJO  6855 con padre 6853
+
+This process ID == 6855 is ending
+PADRE 6853 
+HIJO  6856 con padre 6853
+
+This process ID == 6856 is ending
+PADRE 6853 
+
+This process IDS == 6853 is ending
+
+******************************************************************************************
+******************************************************************************************
+*********************         *********        *******************************************
+*********************  ****************  *************************************************
+*********************  ****************  *************************************************
+*********************  ****************  *************************************************
+*********************      ************        *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************         *********        *******************************************
+******************************************************************************************
+******************************************************************************************
+
+
+
+int main(void){
+
+	char *buf = NULL;
+	int pid, status = 0;
+	buf = (char *)malloc(sizeof(char) * STR_SIZE);	
+	if ((pid = fork()) < 0 )
+ 	{
+ 	printf("Error haciendo fork\n");	
+	exit(EXIT_FAILURE);
+	}
+
+	else if(pid == 0){
+		printf("\nIntroduce un nombre: ");
+		fgets(buf, STR_SIZE, stdin);
+		printf("\nHIJO === %d", getpid());
+		printf("\nBUF == %s\n", buf);
+		free(buf);
+	}
+	
+	else{
+		wait(&status);
+		printf("\nPADRE == %d", getpid());
+		printf("\nBUF == %s\n", buf);		//Si comentamos esto, no accede a buf
+		free(buf); 				//el proceso padre ==> no unconditional
+							//fgets se hace en hijo
+	}						//malloc antes del fork ==> 2 x free()
+	exit(EXIT_SUCCESS);
+}
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e6
+
+Introduce un nombre: hello
+
+HIJO === 5798
+BUF == hello
+
+
+PADRE == 5797
+BUF == 
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ valgrind --leak-check=full --track-origins=yes ./e6
+==5784== Memcheck, a memory error detector
+==5784== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==5784== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==5784== Command: ./e6
+==5784== 
+
+Introduce un nombre: hello
+
+HIJO === 5787
+BUF == hello
+
+==5787== 
+==5787== HEAP SUMMARY:
+==5787==     in use at exit: 0 bytes in 0 blocks
+==5787==   total heap usage: 3 allocs, 3 frees, 2,128 bytes allocated
+==5787== 
+==5787== All heap blocks were freed -- no leaks are possible
+==5787== 
+==5787== For counts of detected and suppressed errors, rerun with: -v
+==5787== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+PADRE == 5784
+==5784== Conditional jump or move depends on uninitialised value(s)
+==5784==    at 0x4E88CC0: vfprintf (vfprintf.c:1632)
+==5784==    by 0x4E8F898: printf (printf.c:33)
+==5784==    by 0x40089A: main (e6.c:30)
+==5784==  Uninitialised value was created by a heap allocation
+==5784==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5784==    by 0x4007D5: main (e6.c:12)
+==5784== 
+BUF == 
+==5784== 
+==5784== HEAP SUMMARY:
+==5784==     in use at exit: 0 bytes in 0 blocks
+==5784==   total heap usage: 2 allocs, 2 frees, 1,104 bytes allocated
+==5784== 
+==5784== All heap blocks were freed -- no leaks are possible
+==5784== 
+==5784== For counts of detected and suppressed errors, rerun with: -v
+==5784== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+
+
+
+Como vemos, dentro del proceso padre, buf no tiene nada escrito (uninitialized) aunque si que hemos reservado memoria. por esto da error.
+
+
+
+
+******************************************************************************************
+******************************************************************************************
+*********************         *********        *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************      ************        *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************         *********        *******************************************
+******************************************************************************************
+******************************************************************************************
+te pongo las 4 ejecuciones... no entiendo por que no va du...
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e8 ls df du -l
+
+HIJO == 5824
+cosas de soper	e2_fork    e4a	 e55	e5.c  e7.c	  e7_execlp.c  e7_execvp.c  e9.c	 h.txt		rando.c
+e1		e2_fork.c  e4b	 e55.c	e6    e7_execl	  e7_execv     e8	    e_9prueba.c  Practica1.pdf
+e1.c		e2_wait    e4.c  e5b	e6.c  e7_execl.c  e7_execv.c   e8.c	    erand	 q
+e1.txt		e2_wait.c  e5	 e5b.c	e7    e7_execlp   e7_execvp    e9	    err.c	 r
+
+HIJO == 5825
+Filesystem     1K-blocks    Used Available Use% Mounted on
+udev             1972396       0   1972396   0% /dev
+tmpfs             398504    6412    392092   2% /run
+/dev/sdc2       22215300 5290808  15772968  26% /
+tmpfs            1992512   28224   1964288   2% /dev/shm
+tmpfs               5120       4      5116   1% /run/lock
+tmpfs            1992512       0   1992512   0% /sys/fs/cgroup
+/dev/sda1         201633   28017    173616  14% /boot/efi
+tmpfs             398504      76    398428   1% /run/user/1000
+/dev/sdc3        7681232  311396   7369836   5% /media/fons/Fon's USB
+
+HIJO == 5826
+
+Oh dear, error...: No such file or directory
+
+
+
+
+
+
+
+
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e8 ls df du -lp
+
+HIJO == 5833
+cosas de soper	e2_fork    e4a	 e55	e5.c  e7.c	  e7_execlp.c  e7_execvp.c  e9.c	 h.txt		rando.c
+e1		e2_fork.c  e4b	 e55.c	e6    e7_execl	  e7_execv     e8	    e_9prueba.c  Practica1.pdf
+e1.c		e2_wait    e4.c  e5b	e6.c  e7_execl.c  e7_execv.c   e8.c	    erand	 q
+e1.txt		e2_wait.c  e5	 e5b.c	e7    e7_execlp   e7_execvp    e9	    err.c	 r
+
+HIJO == 5834
+Filesystem     1K-blocks    Used Available Use% Mounted on
+udev             1972396       0   1972396   0% /dev
+tmpfs             398504    6412    392092   2% /run
+/dev/sdc2       22215300 5290808  15772968  26% /
+tmpfs            1992512   28224   1964288   2% /dev/shm
+tmpfs               5120       4      5116   1% /run/lock
+tmpfs            1992512       0   1992512   0% /sys/fs/cgroup
+/dev/sda1         201633   28017    173616  14% /boot/efi
+tmpfs             398504      76    398428   1% /run/user/1000
+/dev/sdc3        7681232  311396   7369836   5% /media/fons/Fon's USB
+
+HIJO == 5835
+1444	.
+
+
+
+
+
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e8 ls df du -lp
+
+HIJO == 5833
+cosas de soper	e2_fork    e4a	 e55	e5.c  e7.c	  e7_execlp.c  e7_execvp.c  e9.c	 h.txt		rando.c
+e1		e2_fork.c  e4b	 e55.c	e6    e7_execl	  e7_execv     e8	    e_9prueba.c  Practica1.pdf
+e1.c		e2_wait    e4.c  e5b	e6.c  e7_execl.c  e7_execv.c   e8.c	    erand	 q
+e1.txt		e2_wait.c  e5	 e5b.c	e7    e7_execlp   e7_execvp    e9	    err.c	 r
+
+HIJO == 5834
+Filesystem     1K-blocks    Used Available Use% Mounted on
+udev             1972396       0   1972396   0% /dev
+tmpfs             398504    6412    392092   2% /run
+/dev/sdc2       22215300 5290808  15772968  26% /
+tmpfs            1992512   28224   1964288   2% /dev/shm
+tmpfs               5120       4      5116   1% /run/lock
+tmpfs            1992512       0   1992512   0% /sys/fs/cgroup
+/dev/sda1         201633   28017    173616  14% /boot/efi
+tmpfs             398504      76    398428   1% /run/user/1000
+/dev/sdc3        7681232  311396   7369836   5% /media/fons/Fon's USB
+
+HIJO == 5835
+1444	.
+
+
+
+
+
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e8 ls df du -vp
+
+HIJO == 5841
+cosas de soper	e2_fork    e4a	 e55	e5.c  e7.c	  e7_execlp.c  e7_execvp.c  e9.c	 h.txt		rando.c
+e1		e2_fork.c  e4b	 e55.c	e6    e7_execl	  e7_execv     e8	    e_9prueba.c  Practica1.pdf
+e1.c		e2_wait    e4.c  e5b	e6.c  e7_execl.c  e7_execv.c   e8.c	    erand	 q
+e1.txt		e2_wait.c  e5	 e5b.c	e7    e7_execlp   e7_execvp    e9	    err.c	 r
+
+HIJO == 5842
+Filesystem     1K-blocks    Used Available Use% Mounted on
+udev             1972396       0   1972396   0% /dev
+tmpfs             398504    6412    392092   2% /run
+/dev/sdc2       22215300 5290808  15772968  26% /
+tmpfs            1992512   28224   1964288   2% /dev/shm
+tmpfs               5120       4      5116   1% /run/lock
+tmpfs            1992512       0   1992512   0% /sys/fs/cgroup
+/dev/sda1         201633   28017    173616  14% /boot/efi
+tmpfs             398504      76    398428   1% /run/user/1000
+/dev/sdc3        7681232  311396   7369836   5% /media/fons/Fon's USB
+
+HIJO == 5843
+1444	.
+
+
+
+******************************************************************************************
+******************************************************************************************
+*********************         *********        *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************  ****************  ****  *******************************************
+*********************      ************        *******************************************
+*********************  **********************  *******************************************
+*********************  **********************  *******************************************
+*********************         *********        *******************************************
+******************************************************************************************
+******************************************************************************************
+explico: e9.c -->uso solo 1 pipe, es turbio e incorrecto. no funciona siempre y aparecen cosas turbias como en division.... igual hay un fallo que magicamente arregle todo
+	 e9m.c --> uso 2 pipes, forma correcta de hacerlo.
+		   padre escribe en p1, hijo lee de p1. hijo escribe en p2, padre lee de p2.
+	Funciona... pero por alguna razon que no puedo discernir, se queda colgado... no acaba nunca...
+			no entiendo muy bien... pero mira este antes porq no creo q sea mucho el prob.
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e9
+
+Datos enviados a través de la tubería por el proceso PID=6251. Operando 1: 9. Operando 2: 2. suma: 11
+
+Datos enviados a través de la tubería por el proceso PID=6252. Operando 1: 9. Operando 2: 2. resta: 7
+
+Datos enviados a través de la tubería por el proceso PID=6253. Operando 1: 9. Operando 2: 2. multiplicacion: 18
+
+Datos enviados a través de la tubería por el proceso PID=6254. Operando 1: 9. Operando 2: 2. division: 4ion: 18
+
+
+
+fons@Fons:~/Desktop/2o Cuatrimestre/Sistemas Operativos/practicas/p1$ ./e9m
+
+FOR 0
+HIJO  6342 con padre 6341
+
+This process ID == 6342 is ending
+
+Datos enviados a través de la tubería por el proceso PID=6342. Operando 1: 9. Operando 2: 2. suma: 11
+
+FOR 1
+HIJO  6343 con padre 6341
+
+This process ID == 6343 is ending
+
+
+
+
+
+
+
+
+

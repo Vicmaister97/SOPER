@@ -1,0 +1,74 @@
+\hypertarget{e9_8c}{}\section{e9.\+c File Reference}
+\label{e9_8c}\index{e9.\+c@{e9.\+c}}
+
+
+Programa que crea 4 procesos hijos que en orden suman, restan, multiplican y dividen 2 operandos que se pasan como parametro de entrada. Todos los hijos tienen un unico padre que le pasa los parametros mediante una tuberia. Cada hijo devuelve al padre el resultado de su operacion correspondiente. El padre imprime el resultado devuelto por los hijos.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+Include dependency graph for e9.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+P\+R\+OC}~4\hypertarget{e9_8c_acee2369f62e4a096d243dec3cd7d0b00}{}\label{e9_8c_acee2369f62e4a096d243dec3cd7d0b00}
+
+\item 
+\#define {\bfseries T\+AM}~200\hypertarget{e9_8c_ae0b4816fb45161ef9da5e6d6134ee28a}{}\label{e9_8c_ae0b4816fb45161ef9da5e6d6134ee28a}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries O\+P\+E\+R\+A\+C\+I\+ON} \{ {\bfseries S\+U\+MA} = 0, 
+{\bfseries R\+E\+S\+TA} = 1, 
+{\bfseries M\+U\+LT} = 2, 
+{\bfseries D\+IV} = 3
+ \}\hypertarget{e9_8c_a38327b96c7dded8688dddbc8b14300ad}{}\label{e9_8c_a38327b96c7dded8688dddbc8b14300ad}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{e9_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programa que crea 4 procesos hijos que en orden suman, restan, multiplican y dividen 2 operandos que se pasan como parametro de entrada. Todos los hijos tienen un unico padre que le pasa los parametros mediante una tuberia. Cada hijo devuelve al padre el resultado de su operacion correspondiente. El padre imprime el resultado devuelto por los hijos. 
+
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} 
+\begin{DoxyParams}{Parameters}
+{\em argv\mbox{[}0\mbox{]}} & el nombre del programa \\
+\hline
+{\em argv\mbox{[}2\mbox{]}} & x,y donde x e y son dos int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+\+: 03/03/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{e9.\+c@{e9.\+c}!main@{main}}
+\index{main@{main}!e9.\+c@{e9.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{e9_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{e9_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+$<$Creacion de los pipes
+
+$<$lee lo que le pasa el padre
+
+$<$divide la cadena \char`\"{}x,y\char`\"{} en \char`\"{}x\char`\"{} e \char`\"{}y\char`\"{}
+
+$<$guarda en un buffer la informacion a mandar al padre
+
+$<$escribe en el pipe y espera al hijo 

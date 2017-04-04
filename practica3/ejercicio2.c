@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
+#include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
 #include <sys/shm.h>

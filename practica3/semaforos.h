@@ -45,7 +45,7 @@ Entrada:
 Salida:
 	int: OK si todo fue correcto, ERROR en caso de error.
 ***************************************************************/
-int Down_Semaforo(int id, int num_sem, int undo);
+int Down_Semaforo(int semid, int num_sem, int undo);
 /***************************************************************
 Nombre: DownMultiple_Semaforo
 Descripcion: Baja todos los semaforos del array indicado por active.
@@ -57,7 +57,7 @@ Entrada:
 Salida:
 	int: OK si todo fue correcto, ERROR en caso de error.
 ***************************************************************/
-int DownMultiple_Semaforo(int id,int size,int undo,int *active);
+int DownMultiple_Semaforo(int semid, int size, int undo, int *active);
 /**************************************************************
 Nombre:Up_Semaforo
 Descripcion: Sube el semaforo indicado
@@ -68,7 +68,7 @@ Entrada:
 Salida:
 	int: OK si todo fue correcto, ERROR en caso de error.
 ***************************************************************/
-int Up_Semaforo(int id, int num_sem, int undo);
+int Up_Semaforo(int semid, int num_sem, int undo);
 /***************************************************************
 Nombre: UpMultiple_Semaforo
 Descripcion: Sube todos los semaforos del array indicado por active.
@@ -80,4 +80,4 @@ Entrada:
 Salida:
 	int: OK si todo fue correcto, ERROR en caso de error.
 ***************************************************************/
-int UpMultiple_Semaforo(int id,int size, int undo, int *active);
+int UpMultiple_Semaforo(int semid, int size, int undo, int *active);

@@ -20,9 +20,9 @@ clean :
 	@echo "# Ha cambiado $<"
 	$(CC) $(CFLAGS) -c $<
 
-$(EXE) : % : %.o
+$(EXE) : % : %.o semaforos.o
 	@echo "#---------------------------"
 	@echo "# Generando $@ "
 	@echo "# Depende de $^"
 	@echo "# Ha cambiado $<"
-	$(CC) $(CFLAGS) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o semaforos.o

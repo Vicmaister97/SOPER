@@ -1,0 +1,143 @@
+\hypertarget{ejercicio6_8c}{}\section{ejercicio6.\+c File Reference}
+\label{ejercicio6_8c}\index{ejercicio6.\+c@{ejercicio6.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ipc.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$sys/sem.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/shm.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}semaforos.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct___letra}{\+\_\+\+Letra}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio6_8c_a68c15c5fb7f7c6f707903e6a46ab0557}\label{ejercicio6_8c_a68c15c5fb7f7c6f707903e6a46ab0557}} 
+\#define {\bfseries F\+I\+L\+E\+K\+EY}~\char`\"{}/bin/cat\char`\"{}
+\item 
+\mbox{\Hypertarget{ejercicio6_8c_a8ae9d53f33f46cfcfcb9736e6351452a}\label{ejercicio6_8c_a8ae9d53f33f46cfcfcb9736e6351452a}} 
+\#define {\bfseries K\+EY}~1300
+\item 
+\mbox{\Hypertarget{ejercicio6_8c_ada831b9e37399bf906c8184a888e28cd}\label{ejercicio6_8c_ada831b9e37399bf906c8184a888e28cd}} 
+\#define {\bfseries S\+E\+M\+K\+EY}~75797
+\item 
+\mbox{\Hypertarget{ejercicio6_8c_a95c81905ff3d55e62fb763f407f9fab1}\label{ejercicio6_8c_a95c81905ff3d55e62fb763f407f9fab1}} 
+\#define {\bfseries N\+\_\+\+S\+E\+M\+A\+F\+O\+R\+OS}~3
+\item 
+\#define \hyperlink{ejercicio6_8c_ae0233515480e60d29bcc731469976e02}{C\+R\+I\+T\+I\+C\+AL}~0
+\item 
+\#define \hyperlink{ejercicio6_8c_a419ecdbe18dc2955d0625aacf9a1a45a}{N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL}~1
+\item 
+\#define \hyperlink{ejercicio6_8c_afce4f06db9bac2d40ff9a04603858a6c}{W\+H\+A\+LE}~2
+\item 
+\#define \hyperlink{ejercicio6_8c_af2141e1888316b3e30394a05d4f9b252}{A\+L\+FB}~26
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio6_8c_a1b437cc0bfbef6477df41ca40b28920a}\label{ejercicio6_8c_a1b437cc0bfbef6477df41ca40b28920a}} 
+typedef struct \hyperlink{struct___letra}{\+\_\+\+Letra} \hyperlink{ejercicio6_8c_a1b437cc0bfbef6477df41ca40b28920a}{letra}
+\begin{DoxyCompactList}\small\item\em letra nuestra estructura para la memoria compartida tiene solo un char letra \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ejercicio6_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em main\+: programa productor-\/consumidor el proceso padre creara un hijo que sera el productor de letras una a una de A,B...Z el proceso hijo las escribira en memoria compartida y el proceso padre las imprimira por pantalla, leyendolas una a una de la memoria compartida se implementa con 3 semaforos para asegurar su correcto funcionamiento \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} \begin{DoxyDate}{Date}
+\+: 04/04/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ejercicio6_8c_af2141e1888316b3e30394a05d4f9b252}\label{ejercicio6_8c_af2141e1888316b3e30394a05d4f9b252}} 
+\index{ejercicio6.\+c@{ejercicio6.\+c}!A\+L\+FB@{A\+L\+FB}}
+\index{A\+L\+FB@{A\+L\+FB}!ejercicio6.\+c@{ejercicio6.\+c}}
+\subsubsection{\texorpdfstring{A\+L\+FB}{ALFB}}
+{\footnotesize\ttfamily \#define A\+L\+FB~26}
+
+Numero de letras del abecedario ingles \mbox{\Hypertarget{ejercicio6_8c_ae0233515480e60d29bcc731469976e02}\label{ejercicio6_8c_ae0233515480e60d29bcc731469976e02}} 
+\index{ejercicio6.\+c@{ejercicio6.\+c}!C\+R\+I\+T\+I\+C\+AL@{C\+R\+I\+T\+I\+C\+AL}}
+\index{C\+R\+I\+T\+I\+C\+AL@{C\+R\+I\+T\+I\+C\+AL}!ejercicio6.\+c@{ejercicio6.\+c}}
+\subsubsection{\texorpdfstring{C\+R\+I\+T\+I\+C\+AL}{CRITICAL}}
+{\footnotesize\ttfamily \#define C\+R\+I\+T\+I\+C\+AL~0}
+
+Semaforo para la seccion critica (mutex) \mbox{\Hypertarget{ejercicio6_8c_a419ecdbe18dc2955d0625aacf9a1a45a}\label{ejercicio6_8c_a419ecdbe18dc2955d0625aacf9a1a45a}} 
+\index{ejercicio6.\+c@{ejercicio6.\+c}!N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL@{N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL}}
+\index{N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL@{N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL}!ejercicio6.\+c@{ejercicio6.\+c}}
+\subsubsection{\texorpdfstring{N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL}{NOT\_SO\_CRITICAL}}
+{\footnotesize\ttfamily \#define N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+C\+AL~1}
+
+Semaforo 2 \mbox{\Hypertarget{ejercicio6_8c_afce4f06db9bac2d40ff9a04603858a6c}\label{ejercicio6_8c_afce4f06db9bac2d40ff9a04603858a6c}} 
+\index{ejercicio6.\+c@{ejercicio6.\+c}!W\+H\+A\+LE@{W\+H\+A\+LE}}
+\index{W\+H\+A\+LE@{W\+H\+A\+LE}!ejercicio6.\+c@{ejercicio6.\+c}}
+\subsubsection{\texorpdfstring{W\+H\+A\+LE}{WHALE}}
+{\footnotesize\ttfamily \#define W\+H\+A\+LE~2}
+
+Semaforo 3 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ejercicio6_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{ejercicio6_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{ejercicio6.\+c@{ejercicio6.\+c}!main@{main}}
+\index{main@{main}!ejercicio6.\+c@{ejercicio6.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+main\+: programa productor-\/consumidor el proceso padre creara un hijo que sera el productor de letras una a una de A,B...Z el proceso hijo las escribira en memoria compartida y el proceso padre las imprimira por pantalla, leyendolas una a una de la memoria compartida se implementa con 3 semaforos para asegurar su correcto funcionamiento 
+
+$<$generamos un key para la memoria compartida
+
+$<$generamos un key para los semaforos
+
+Creacion e inicializacion de los 3 semaforos inicializamos C\+R\+I\+T\+I\+C\+AL y N\+O\+T\+\_\+\+S\+O\+\_\+\+C\+R\+I\+T\+I\+AL a 1, y W\+H\+A\+LE a 0
+
+$<$Array para valores iniciales de los semaforos
+
+$<$Inicializamos todos los semaforos a 1 menos el ultimo
+
+$<$W\+H\+A\+LE se inicializa a 0 para evitar interbloqueo
+
+Creacion e identificaion de la memoria compartida
+
+Proceso Hijo\+: sera el productor de letras de 1 en 1 escribe letras de 1 en 1 en memoria compartida y no podra volver a escribir hasta que el padre haya leido de esta memoria (semaforo C\+R\+I\+T\+I\+C\+AL)
+
+$<$Ya no producimos más letras
+
+$<$Desconectamos el proceso de la memoria compartida
+
+$<$Asegura una escritura protegida
+
+$<$Permite que el consumidor lea la letra escrita
+
+$<$ Asegura al padre que el productor ha escrito en la memoria compartida
+
+Proceso Padre\+: sera el consumidor de letras de 1 en 1 lee letras de 1 en 1 de memoria compartida y no podra volver a leer hasta que el hijo haya escrito en esta memoria (semaforo C\+R\+I\+T\+I\+C\+AL) Imprimira la letra que haya leido cuando lea la \textquotesingle{}Z\textquotesingle{}, esperara a que el hijo acabe y terminara
+
+$<$Asegura que hay una nueva letra a leer
+
+$<$Asegura una escritura protegida
+
+$<$Permite que el consumidor lea la letra escrita
+
+$<$Asegura al padre que el productor ha escrito en la memoria compartida
+
+$<$Ha leido la última letra
+
+$<$Espera a la terminacion del hijo
+
+$<$Borramos el semaforo
+
+$<$Desconectamos de la memoria compartida
+
+$<$Borramos la memoria compartida 

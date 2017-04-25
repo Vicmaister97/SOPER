@@ -1,0 +1,79 @@
+\hypertarget{ejercicio5_8c}{}\section{ejercicio5.\+c File Reference}
+\label{ejercicio5_8c}\index{ejercicio5.\+c@{ejercicio5.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ipc.\+h$>$}\newline
+{\ttfamily \#include $<$sys/sem.\+h$>$}\newline
+{\ttfamily \#include $<$sys/shm.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}semaforos.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio5_8c_ada831b9e37399bf906c8184a888e28cd}\label{ejercicio5_8c_ada831b9e37399bf906c8184a888e28cd}} 
+\#define {\bfseries S\+E\+M\+K\+EY}~75797
+\item 
+\mbox{\Hypertarget{ejercicio5_8c_a68c15c5fb7f7c6f707903e6a46ab0557}\label{ejercicio5_8c_a68c15c5fb7f7c6f707903e6a46ab0557}} 
+\#define {\bfseries F\+I\+L\+E\+K\+EY}~\char`\"{}/bin/cat\char`\"{}
+\item 
+\mbox{\Hypertarget{ejercicio5_8c_a95c81905ff3d55e62fb763f407f9fab1}\label{ejercicio5_8c_a95c81905ff3d55e62fb763f407f9fab1}} 
+\#define {\bfseries N\+\_\+\+S\+E\+M\+A\+F\+O\+R\+OS}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ejercicio5_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\begin{DoxyCompactList}\small\item\em main\+: programa que crea tantos N\+\_\+\+S\+E\+M\+A\+F\+O\+R\+OS definido anteriormente, inicializandolos a 1 realiza las siguentes operaciones en orden\+: Up del primer semaforo Down del segundo semaforo Up de ambos semaforos Down de ambos semaforos Borrar todos los semaforos \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} \begin{DoxyDate}{Date}
+\+: 04/04/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ejercicio5_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{ejercicio5_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{ejercicio5.\+c@{ejercicio5.\+c}!main@{main}}
+\index{main@{main}!ejercicio5.\+c@{ejercicio5.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+main\+: programa que crea tantos N\+\_\+\+S\+E\+M\+A\+F\+O\+R\+OS definido anteriormente, inicializandolos a 1 realiza las siguentes operaciones en orden\+: Up del primer semaforo Down del segundo semaforo Up de ambos semaforos Down de ambos semaforos Borrar todos los semaforos 
+
+Creacion de los semaforos obtenemos un key para el semaforo llamamos a Crear\+\_\+\+Semaforo
+
+$<$creamos N\+\_\+\+S\+E\+M\+A\+F\+O\+R\+OS
+
+$<$si no hemos podido crear el semaforo salimos
+
+Inicializacion de los semaforos creamos el array donde se almacenaran los valores iniciales de todos los semaforos llamamos a Inicializar\+\_\+\+Semaforo Si nos devuelve error, borramos el semaforo y salimos del programa
+
+$<$array con valores iniciales de los semaforos
+
+Operaciones con los semaforos realiza\+: up del primer semaforo down del segundo Up de ambos (con Up\+Multiple\+\_\+\+Semaforo) Down de ambos (con Down\+Multiple\+\_\+\+Semaforo) e imprime los valores de los semaforos despues de cada operacion
+
+$<$guarda en arg, los valores actuales de los semaforos
+
+$<$Up del semaforo 0
+
+$<$guarda en arg, los valores actuales de los semaforos
+
+$<$Down del semaforo 1
+
+$<$guarda en arg, los valores actuales de los semaforos
+
+$<$array con los semaforos sobre los que trabajaremos (todos)
+
+$<$Up de todos los semaforos
+
+$<$array con los semaforos sobre los que trabajaremos (todos)
+
+$<$Down de todos los semaforos
+
+$<$array con los semaforos sobre los que trabajaremos (todos)
+
+Borrar los semaforos liberamos el array de valores de los semaforos dentro de arg llamamos a Borrar\+\_\+\+Semaforo si falla esta llamada, salimos del programa de manera anormal

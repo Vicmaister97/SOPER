@@ -1,0 +1,106 @@
+\hypertarget{ejercicio2_8c}{}\section{ejercicio2.\+c File Reference}
+\label{ejercicio2_8c}\index{ejercicio2.\+c@{ejercicio2.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ipc.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/shm.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct___info}{\+\_\+\+Info}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio2_8c_a68c15c5fb7f7c6f707903e6a46ab0557}\label{ejercicio2_8c_a68c15c5fb7f7c6f707903e6a46ab0557}} 
+\#define {\bfseries F\+I\+L\+E\+K\+EY}~\char`\"{}/bin/cat\char`\"{}
+\item 
+\mbox{\Hypertarget{ejercicio2_8c_a8ae9d53f33f46cfcfcb9736e6351452a}\label{ejercicio2_8c_a8ae9d53f33f46cfcfcb9736e6351452a}} 
+\#define {\bfseries K\+EY}~1300
+\item 
+\mbox{\Hypertarget{ejercicio2_8c_a392fb874e547e582e9c66a08a1f23326}\label{ejercicio2_8c_a392fb874e547e582e9c66a08a1f23326}} 
+\#define {\bfseries M\+AX}~100
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio2_8c_abe38599a5f0dc27643fade0d101bd87e}\label{ejercicio2_8c_abe38599a5f0dc27643fade0d101bd87e}} 
+typedef struct \hyperlink{struct___info}{\+\_\+\+Info} \hyperlink{ejercicio2_8c_abe38599a5f0dc27643fade0d101bd87e}{info}
+\begin{DoxyCompactList}\small\item\em info sera la estructura que utilizaremos en la memoria compartida contiene un array nombre de tamano 80 contiene un int id \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ejercicio2_8c_a2e45778cce03737c78a651db3863480c}\label{ejercicio2_8c_a2e45778cce03737c78a651db3863480c}} 
+void {\bfseries manejador\+\_\+\+S\+I\+G\+U\+S\+R1} ()
+\item 
+int \hyperlink{ejercicio2_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em main\+: programa que crea n procesos hijos en paralelo. Los hijos duermen un tiempo aleatorio y despues escriben en una zona de memoria compartida un nombre solicitado por el proceso y un id que incrementan dentro de esta zona. Tras hacer esto mandan una señal S\+I\+G\+U\+S\+R1 a su proceso padre que se encarga de imprimir por pantalla la informacion en la zona de memoria compartida. EL padre espera a que acaben todos los hijos antes de borrar esta zona de memoria compartida y terminar. \end{DoxyCompactList}\item 
+void \hyperlink{ejercicio2_8c_af67f7ad6bdff3c40a6b1d97ae573fa4c}{manejador\+\_\+\+S\+I\+G\+U\+S\+R1} (int sig)
+\begin{DoxyCompactList}\small\item\em maneja la senal S\+I\+G\+\_\+\+U\+S\+R1 y la arma de nuevo \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} \begin{DoxyDate}{Date}
+\+: 04/04/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ejercicio2_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{ejercicio2_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{ejercicio2.\+c@{ejercicio2.\+c}!main@{main}}
+\index{main@{main}!ejercicio2.\+c@{ejercicio2.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+main\+: programa que crea n procesos hijos en paralelo. Los hijos duermen un tiempo aleatorio y despues escriben en una zona de memoria compartida un nombre solicitado por el proceso y un id que incrementan dentro de esta zona. Tras hacer esto mandan una señal S\+I\+G\+U\+S\+R1 a su proceso padre que se encarga de imprimir por pantalla la informacion en la zona de memoria compartida. EL padre espera a que acaben todos los hijos antes de borrar esta zona de memoria compartida y terminar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & int, numero de argumentos \\
+\hline
+{\em argv,se} & espera un entero que sera el numero de procesos hijos a crear \\
+\hline
+\end{DoxyParams}
+$<$generamos un key para la memoria compartida
+
+$<$creamos la zona de memoria compartida con permisos de lectura y escritura
+
+$<$Identificamos la zona de memoria compartida
+
+$<$inicializamos el valor de id a 0
+
+$<$Armamos la senal S\+I\+G\+\_\+\+U\+S\+R1
+
+$<$Creamos tantos procesos hijos como numproc
+
+el hijo solicita un nombre al usuario el nombre se escribe en la zona de memoria compartida se aumenta el ID en la memoria compartida de manera que cada nombre tenga un ID distinto cuando termina esto, le manda la senal S\+I\+G\+\_\+\+U\+S\+R1 al proceso padre y termina
+
+$<$El proceso hijo se desconecta de la memoria compartida
+
+el proceso padre espera a recibir una senal al recibirla imprime lo que haya leido de la zona de memoria compartida finalmente espera a que termine el hijo
+
+$<$El proceso se desconecta de la memoria compartida
+
+$<$El proceso se borra la memoria compartida \mbox{\Hypertarget{ejercicio2_8c_af67f7ad6bdff3c40a6b1d97ae573fa4c}\label{ejercicio2_8c_af67f7ad6bdff3c40a6b1d97ae573fa4c}} 
+\index{ejercicio2.\+c@{ejercicio2.\+c}!manejador\+\_\+\+S\+I\+G\+U\+S\+R1@{manejador\+\_\+\+S\+I\+G\+U\+S\+R1}}
+\index{manejador\+\_\+\+S\+I\+G\+U\+S\+R1@{manejador\+\_\+\+S\+I\+G\+U\+S\+R1}!ejercicio2.\+c@{ejercicio2.\+c}}
+\subsubsection{\texorpdfstring{manejador\+\_\+\+S\+I\+G\+U\+S\+R1()}{manejador\_SIGUSR1()}}
+{\footnotesize\ttfamily void manejador\+\_\+\+S\+I\+G\+U\+S\+R1 (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+maneja la senal S\+I\+G\+\_\+\+U\+S\+R1 y la arma de nuevo 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig,int} & que contiene el numero de la senal que se le pasa \\
+\hline
+\end{DoxyParams}
+$<$Arma la senal de nuevo 

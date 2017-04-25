@@ -1,0 +1,81 @@
+\hypertarget{semaforos_8h}{}\section{semaforos.\+h File Reference}
+\label{semaforos_8h}\index{semaforos.\+h@{semaforos.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{semaforos_8h_a735563036dced0b7d6cc98f97ea4978b}\label{semaforos_8h_a735563036dced0b7d6cc98f97ea4978b}} 
+\#define {\bfseries E\+RR}~-\/1
+\item 
+\mbox{\Hypertarget{semaforos_8h_aba51915c87d64af47fb1cc59348961c9}\label{semaforos_8h_aba51915c87d64af47fb1cc59348961c9}} 
+\#define {\bfseries OK}~(!(E\+RR))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{semaforos_8h_a4af104b0ed37e6ae0289a1059bc6e990}{Inicializar\+\_\+\+Semaforo} (int semid, unsigned short $\ast$array)
+\item 
+int \hyperlink{semaforos_8h_a731339337960a681efa435a10f12c312}{Borrar\+\_\+\+Semaforo} (int semid)
+\item 
+int \hyperlink{semaforos_8h_a16b16dd895b5f4cbe48f1ac8977e8b35}{Crear\+\_\+\+Semaforo} (key\+\_\+t key, int size, int $\ast$semid)
+\item 
+int \hyperlink{semaforos_8h_a09cfe06b86766d42e1187644784afb9b}{Down\+\_\+\+Semaforo} (int semid, int num\+\_\+sem, int undo)
+\item 
+\mbox{\Hypertarget{semaforos_8h_ad15a11016ff8903f5907773717c7d479}\label{semaforos_8h_ad15a11016ff8903f5907773717c7d479}} 
+int {\bfseries Down\+Multiple\+\_\+\+Semaforo} (int semid, int size, int undo, int $\ast$active)
+\item 
+int \hyperlink{semaforos_8h_ad282ab72294b1389eeac632ebcddd7dc}{Up\+\_\+\+Semaforo} (int semid, int num\+\_\+sem, int undo)
+\item 
+\mbox{\Hypertarget{semaforos_8h_a56b7305d77fab42b0328171a9603a7f7}\label{semaforos_8h_a56b7305d77fab42b0328171a9603a7f7}} 
+int {\bfseries Up\+Multiple\+\_\+\+Semaforo} (int semid, int size, int undo, int $\ast$active)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+victor garcia \href{mailto:victor.garciacarrera@estudiante.uam.es}{\tt victor.\+garciacarrera@estudiante.\+uam.\+es}, alfonso carvajal \href{mailto:alfonso.carvajal@estudiante.uam.es}{\tt alfonso.\+carvajal@estudiante.\+uam.\+es} \begin{DoxyDate}{Date}
+\+: 04/04/2017 Grupo\+:2201 Pareja 4 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{semaforos_8h_a731339337960a681efa435a10f12c312}\label{semaforos_8h_a731339337960a681efa435a10f12c312}} 
+\index{semaforos.\+h@{semaforos.\+h}!Borrar\+\_\+\+Semaforo@{Borrar\+\_\+\+Semaforo}}
+\index{Borrar\+\_\+\+Semaforo@{Borrar\+\_\+\+Semaforo}!semaforos.\+h@{semaforos.\+h}}
+\subsubsection{\texorpdfstring{Borrar\+\_\+\+Semaforo()}{Borrar\_Semaforo()}}
+{\footnotesize\ttfamily int Borrar\+\_\+\+Semaforo (\begin{DoxyParamCaption}\item[{int}]{semid }\end{DoxyParamCaption})}
+
+$<$No hay semáforo que borrar
+
+$<$Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum \mbox{\Hypertarget{semaforos_8h_a16b16dd895b5f4cbe48f1ac8977e8b35}\label{semaforos_8h_a16b16dd895b5f4cbe48f1ac8977e8b35}} 
+\index{semaforos.\+h@{semaforos.\+h}!Crear\+\_\+\+Semaforo@{Crear\+\_\+\+Semaforo}}
+\index{Crear\+\_\+\+Semaforo@{Crear\+\_\+\+Semaforo}!semaforos.\+h@{semaforos.\+h}}
+\subsubsection{\texorpdfstring{Crear\+\_\+\+Semaforo()}{Crear\_Semaforo()}}
+{\footnotesize\ttfamily int Crear\+\_\+\+Semaforo (\begin{DoxyParamCaption}\item[{key\+\_\+t}]{key,  }\item[{int}]{size,  }\item[{int $\ast$}]{semid }\end{DoxyParamCaption})}
+
+$<$Ya existía un semáforo asociado a la clave key \mbox{\Hypertarget{semaforos_8h_a09cfe06b86766d42e1187644784afb9b}\label{semaforos_8h_a09cfe06b86766d42e1187644784afb9b}} 
+\index{semaforos.\+h@{semaforos.\+h}!Down\+\_\+\+Semaforo@{Down\+\_\+\+Semaforo}}
+\index{Down\+\_\+\+Semaforo@{Down\+\_\+\+Semaforo}!semaforos.\+h@{semaforos.\+h}}
+\subsubsection{\texorpdfstring{Down\+\_\+\+Semaforo()}{Down\_Semaforo()}}
+{\footnotesize\ttfamily int Down\+\_\+\+Semaforo (\begin{DoxyParamCaption}\item[{int}]{semid,  }\item[{int}]{num\+\_\+sem,  }\item[{int}]{undo }\end{DoxyParamCaption})}
+
+$<$Actuamos sobre el semáforo recibido como parámetro de entrada de la función
+
+$<$Decrementar en 1 el valor del semáforo pues es la función de Down
+
+$<$Para evitar interbloqueos si un proceso acaba inesperadamente \mbox{\Hypertarget{semaforos_8h_a4af104b0ed37e6ae0289a1059bc6e990}\label{semaforos_8h_a4af104b0ed37e6ae0289a1059bc6e990}} 
+\index{semaforos.\+h@{semaforos.\+h}!Inicializar\+\_\+\+Semaforo@{Inicializar\+\_\+\+Semaforo}}
+\index{Inicializar\+\_\+\+Semaforo@{Inicializar\+\_\+\+Semaforo}!semaforos.\+h@{semaforos.\+h}}
+\subsubsection{\texorpdfstring{Inicializar\+\_\+\+Semaforo()}{Inicializar\_Semaforo()}}
+{\footnotesize\ttfamily int Inicializar\+\_\+\+Semaforo (\begin{DoxyParamCaption}\item[{int}]{semid,  }\item[{unsigned short $\ast$}]{array }\end{DoxyParamCaption})}
+
+$<$Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum \mbox{\Hypertarget{semaforos_8h_ad282ab72294b1389eeac632ebcddd7dc}\label{semaforos_8h_ad282ab72294b1389eeac632ebcddd7dc}} 
+\index{semaforos.\+h@{semaforos.\+h}!Up\+\_\+\+Semaforo@{Up\+\_\+\+Semaforo}}
+\index{Up\+\_\+\+Semaforo@{Up\+\_\+\+Semaforo}!semaforos.\+h@{semaforos.\+h}}
+\subsubsection{\texorpdfstring{Up\+\_\+\+Semaforo()}{Up\_Semaforo()}}
+{\footnotesize\ttfamily int Up\+\_\+\+Semaforo (\begin{DoxyParamCaption}\item[{int}]{semid,  }\item[{int}]{num\+\_\+sem,  }\item[{int}]{undo }\end{DoxyParamCaption})}
+
+$<$Actuamos sobre el semáforo recibido como parámetro de entrada de la función
+
+$<$Incrementar en 1 el valor del semáforo pues es la función de Up
+
+$<$Para evitar interbloqueos si un proceso acaba inesperadamente 

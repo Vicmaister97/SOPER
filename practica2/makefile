@@ -4,8 +4,8 @@
 #-----------------------
 
 CC = gcc
-CFLAGS = -g -Wall -w -pedantic -std=c99
-EXE = e1 e2 e3a e3b e4 ejercicio6 ejercicio8 ejercicio10
+CFLAGS = -g -Wall -w -lpthread -std=c99
+EXE = ejercicio6 ejercicio8 ejercicio10
 
 all : $(EXE)
 

@@ -3,9 +3,9 @@
 # Realizado por: Víctor García victor.garciacarrera@estudiante.uam.es Alfonso Carvajal alfonso.carvajal@estudiante.uam.es
 #-----------------------
 
-CC = gcc
+CC = gcc -Wall -ansi -pedantic
 CFLAGS = -g -w -std=c99
-EXE = ejercicio2
+EXE = ejercicio2 ejercicio5 ejercicio6
 
 all : $(EXE)
 

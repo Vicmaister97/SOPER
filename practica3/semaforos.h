@@ -1,3 +1,11 @@
+/**
+ *@file semaforos.h
+ *@autor victor garcia victor.garciacarrera@estudiante.uam.es, alfonso carvajal alfonso.carvajal@estudiante.uam.es
+ *@date: 04/04/2017
+ *Grupo:2201 Pareja 4
+ *
+*/
+
 #include <stdio.h>
 
 #ifndef ERR

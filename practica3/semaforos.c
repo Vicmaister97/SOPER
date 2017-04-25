@@ -1,3 +1,11 @@
+/**
+ *@file semaforos.c
+ *@autor victor garcia victor.garciacarrera@estudiante.uam.es, alfonso carvajal alfonso.carvajal@estudiante.uam.es
+ *@date: 04/04/2017
+ *Grupo:2201 Pareja 4
+ *
+*/
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
@@ -17,10 +25,11 @@ int Inicializar_Semaforo(int semid, unsigned short *array){
 		struct semid_ds *semstat;
 		unsigned short *array;
 	} arg;
-
+	
+	
 	arg.array = array;
 
-	if (semctl(semid, 0 , SETALL, arg) == -1){ /*Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum*/
+	if (semctl(semid, 0 , SETALL, arg) == -1){ /*!<Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum */
 		return ERR;
 	}
 	return OK;									
@@ -28,7 +37,7 @@ int Inicializar_Semaforo(int semid, unsigned short *array){
 
 int Borrar_Semaforo(int semid){
 	if (semid < 0){
-		return OK; /*No hay semáforo que borrar*/
+		return OK; /*!<No hay semáforo que borrar */
 	}
 
 	union semun {
@@ -37,11 +46,10 @@ int Borrar_Semaforo(int semid){
 		unsigned short *array;
 	} arg;
 
-	if (semctl(semid, 0, IPC_RMID, 0) == -1){ /*Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum*/
+	if (semctl(semid, 0, IPC_RMID) == -1){ /*!<Ponemos 0 de forma arbitraria, pues esta instrucción de control ignora el argumento semnum */
 		return ERR;
 	}
 
-	free(arg.array);
 	return OK;
 }
 
@@ -55,7 +63,7 @@ int Crear_Semaforo(key_t key, int size, int *semid){
 
 	*semid = semget(key, size, IPC_CREAT | IPC_EXCL | SHM_R | SHM_W);
 
-	if((*semid == -1) && errno == EEXIST){ /*Ya existía un semáforo asociado a la clave key*/
+	if((*semid == -1) && errno == EEXIST){ /*!<Ya existía un semáforo asociado a la clave key */
 		return 1;
 	}
 
@@ -75,7 +83,9 @@ int Crear_Semaforo(key_t key, int size, int *semid){
 	if (Inicializar_Semaforo(*semid, array) == ERR){
 		return ERR;
 	}
-
+	
+	free(array);
+	
 	return 0;
 }
 
@@ -86,9 +96,9 @@ int Down_Semaforo(int semid, int num_sem, int undo){
 
 	struct sembuf sem_oper;
 
-	sem_oper.sem_num = num_sem; /* Actuamos sobre el semáforo recibido como parámetro de entrada de la función */
-	sem_oper.sem_op = -1; /* Decrementar en 1 el valor del semáforo pues es la función de Down */
-	sem_oper.sem_flg = undo; /* Para evitar interbloqueos si un proceso acaba inesperadamente */
+	sem_oper.sem_num = num_sem;	  /*!<Actuamos sobre el semáforo recibido como parámetro de entrada de la función */
+	sem_oper.sem_op = -1; 		 /*!<Decrementar en 1 el valor del semáforo pues es la función de Down */
+	sem_oper.sem_flg = undo; 	 /*!<Para evitar interbloqueos si un proceso acaba inesperadamente */
 	if (semop(semid, &sem_oper, 1) == -1){
 		return ERR;
 	}
@@ -119,9 +129,9 @@ int Up_Semaforo(int semid, int num_sem, int undo){
 
 	struct sembuf sem_oper;
 
-	sem_oper.sem_num = num_sem; /* Actuamos sobre el semáforo recibido como parámetro de entrada de la función */
-	sem_oper.sem_op = 1; /* Incrementar en 1 el valor del semáforo pues es la función de Up */
-	sem_oper.sem_flg = undo; /* Para evitar interbloqueos si un proceso acaba inesperadamente */
+	sem_oper.sem_num = num_sem;   /*!<Actuamos sobre el semáforo recibido como parámetro de entrada de la función */
+	sem_oper.sem_op = 1;         /*!<Incrementar en 1 el valor del semáforo pues es la función de Up */
+	sem_oper.sem_flg = undo;     /*!<Para evitar interbloqueos si un proceso acaba inesperadamente */
 	if (semop(semid, &sem_oper, 1) == -1){
 		return ERR;
 	}

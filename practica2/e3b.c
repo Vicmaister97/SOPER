@@ -98,6 +98,7 @@ void *calcprimes(void *n){
 			c++;		/*!<aumentamos el contador*/
 		}
 	}
+
 	pthread_exit(NULL);		/*!<terminamos el hilo*/
 }
 

@@ -1,28 +1,57 @@
-#-----------------------
-# Se generan los ejecutables de los ejercicios 4(apartados a,b), 5(apartados a,b), 6, 8 y 9 de la forma e4a, e4b, e5a, e5b, e6, e8 y e9
-# Realizado por: Víctor García victor.garciacarrera@estudiante.uam.es Alfonso Carvajal alfonso.carvajal@estudiante.uam.es
-#-----------------------
+################################################################################
+# Makefile para la practica1 de RedesII
+# Alfonso Villar Garcia, Victor Garcia Carrera  P4
+# Ver http://www.cs.washington.edu/orgs/acm/tutorials/dev-in-unix/makefiles.html
+################################################################################
 
-CC = gcc
-CFLAGS = -g -Wall -w -lpthread -std=c99
-EXE = ejercicio6 ejercicio8 ejercicio10
+# banderas de compilacion (puede ser util cambiarlas)
+CC = gcc -ansi -pedantic
+CFLAGS = -Wall -g -std=c99
+LDLIBS = -lm -lpthread
+EXE = e3b
 
-all : $(EXE)
+# fuentes a considerar (si no se cambia, todos los '.c' del directorio actual)
+SOURCES = $(shell ls -1 *.c* | xargs)
 
-.PHONY : clean
-clean :
-	rm -f *.o core $(EXE)
+# busca los ejecutables (todos los .c con metodo tipo 'int main')
+EXEC_SOURCES = $(shell grep -l "^int main" $(SOURCES) | xargs)
 
-%.o: %.c *.h
-	@echo "#---------------------------"
-	@echo "# Generando $@ "
-	@echo "# Depende de $^"
-	@echo "# Ha cambiado $<"
-	$(CC) $(CFLAGS) -c $<
+# fich. de dependencia (.d) y nombres de ejecutables (los anteriores, sin '.c')
+EXECS = $(shell echo $(EXEC_SOURCES) | sed -e 's:\.c[p]*::g')
+DEPS = $(shell echo $(SOURCES) | sed -e 's:\.c[p]*:\.d:g')
 
-$(EXE) : % : %.o
-	@echo "#---------------------------"
-	@echo "# Generando $@ "
-	@echo "# Depende de $^"
-	@echo "# Ha cambiado $<"
-	$(CC) $(CFLAGS) -o $@ $@.o
+all:	$(EXE)
+
+
+# receta para hacer un .d (dependencias automaticas de tipo .h para tus .o)
+%.d : %.c
+	@set -e; $(CC) -MM $(CFLAGS) $< \
+	| sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@; \
+	[ -s $@ ] || rm -f $@
+
+#incluye las dependencias generadas
+-include $(DEPS)
+
+# receta para hacer un .o
+%.o :	%.c
+	@echo -n compilando objeto \'$<\'...
+	@$(CC) $(CFLAGS) $< -c
+	@echo [OK]
+
+# receta para hacer un ejecutable (suponiendo resto de dependencias OK)
+% :	%.o
+	@echo -n compilando ejecutable \'$@\'...
+	@$(CC) $(CFLAGS) $^ -o $@ $(LDLIBS)
+	@echo [OK]
+
+# limpieza
+clean:	
+	@rm -f $(wildcard *.o *.d core* *.P) $(EXECS) $(EXE)
+
+# ayuda (nunca viene mal)
+help:
+	@echo "Use: make <target> ..."
+	@echo "Valid targets:"
+	@$(MAKE) --print-data-base --question | sed -e "s:makefile::g" |\
+	awk '/^[^.%][-A-Za-z0-9_]*:/	\
+		{ print "   " substr($$1, 1, length($$1)-1) }'
